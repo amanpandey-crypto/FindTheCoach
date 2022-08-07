@@ -12,7 +12,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://cellular-codex-270006-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      `https://cellular-codex-270006-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=` + token,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)

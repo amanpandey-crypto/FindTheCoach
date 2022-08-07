@@ -4,9 +4,11 @@ export default {
       userEmail: payload.email,
       message: payload.message
     };
-    const response = await fetch(`https://cellular-codex-270006-default-rtdb.firebaseio.com/requests/${payload.coachId}.json`, {
-      method: 'POST',
-      body: JSON.stringify(newRequest)
+    const response = await fetch(
+      `https://cellular-codex-270006-default-rtdb.firebaseio.com/requests/${payload.coachId}.json`,
+      {
+        method: 'POST',
+        body: JSON.stringify(newRequest)
       }
     );
 
@@ -26,7 +28,12 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
-    const response = await fetch(`https://cellular-codex-270006-default-rtdb.firebaseio.com/requests/${coachId}.json`);
+    console.log(coachId);
+    const token = context.rootGetters.token;
+    const response = await fetch(
+      `https://cellular-codex-270006-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=` +
+        token
+    );
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -51,3 +58,4 @@ export default {
     context.commit('setRequests', requests);
   }
 };
+
