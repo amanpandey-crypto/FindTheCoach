@@ -7,12 +7,15 @@ export default {
     const response = await fetch(`https://cellular-codex-270006-default-rtdb.firebaseio.com/requests/${payload.coachId}.json`, {
       method: 'POST',
       body: JSON.stringify(newRequest)
-    });
+      }
+    );
 
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to send request.');
+      const error = new Error(
+        responseData.message || 'Failed to send request.'
+      );
       throw error;
     }
 
@@ -27,7 +30,9 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to fetch requests.');
+      const error = new Error(
+        responseData.message || 'Failed to fetch requests.'
+      );
       throw error;
     }
 
